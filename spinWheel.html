@@ -1,0 +1,822 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mega Game Battle Wheel</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+        
+        <style>
+            :root {
+                --dove: #FCEFFA;
+                --rose-garden: #D09DB8;
+                --mulled-wine: #553758;
+                --vanilla-pod: #423048;
+                --ganache: #2B1F21;
+                --pixel-bg: #4a3f6b;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: var(--ganache);
+                background-image: repeating-conic-gradient(
+                    var(--vanilla-pod) 0% 25%, 
+                    transparent 0% 50%
+                );
+                background-size: 100px 100px;
+                color: var(--dove);
+                font-family: 'Courier New', Courier, monospace;
+                text-align: center;
+                min-height: 100vh;
+                padding: 20px;
+                overflow-x: hidden;
+            }
+
+            /* --- NEW PIXEL STYLES --- */
+            .pixel-font {
+                font-family: 'Silkscreen', cursive;
+            }
+
+            .pixel-box {
+                background-color: var(--pixel-bg); 
+                border: 4px solid #000;    
+                box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.4); 
+                padding: 20px;
+                color: white;
+                border-radius: 4px;
+            }
+
+            .pixel-btn {
+                background-color: var(--pixel-bg);
+                border: 4px solid #000;
+                box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.4);
+                color: white;
+                padding: 15px 30px;
+                font-size: 1.5rem;
+                border-radius: 4px;
+                cursor: pointer;
+                text-transform: uppercase;
+                transition: transform 0.1s, box-shadow 0.1s;
+                /* White text with thick black outline */
+                text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0px rgba(0,0,0,0.5);
+            }
+
+            .pixel-btn:active {
+                transform: translateY(8px);
+                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+            }
+            
+            .pixel-btn:hover {
+                filter: brightness(1.2);
+            }
+
+            h2 {
+                font-size: 3rem;
+                color: white;
+                text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 5px 5px 0px rgba(0,0,0,0.5);
+                margin: 30px 0 20px 0;
+                text-transform: uppercase;
+            }
+
+            /* --- WHEEL CONTAINERS --- */
+            .wheel-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 50px 0;
+                width: 100%;
+            }
+
+            .wheel-container {
+                position: relative;
+                margin: 30px 0;
+            }
+
+            .pointer {
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0; 
+                height: 0; 
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-top: 50px solid white;
+                z-index: 10;
+                filter: drop-shadow(0px 4px 0px black);
+            }
+
+            canvas {
+                border-radius: 50%;
+                border: 2px solid #000; /* Thinner outline as requested */
+                box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
+                background-color: #000;
+            }
+
+            /* --- PLAYERS SECTION --- */
+            .players-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 40px; /* Spaced out further */
+                width: 95%;
+                max-width: 1600px;
+                margin: 0 auto 80px auto;
+            }
+
+            .player-card {
+                width: 400px; /* Slightly wider */
+                text-align: left;
+            }
+
+            .player-card h3 {
+                color: white;
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+                border-bottom: 4px solid #000;
+                padding-bottom: 10px;
+                text-shadow: 2px 2px 0 #000;
+            }
+
+            .slot {
+                background-color: rgba(0, 0, 0, 0.4);
+                border: 2px solid #000;
+                padding: 15px;
+                margin-bottom: 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 60px;
+                font-size: 1.2rem;
+                font-family: inherit;
+            }
+
+            .slot-label {
+                font-weight: bold;
+                color: var(--rose-garden);
+                margin-right: 10px;
+            }
+
+            .slot-value {
+                flex-grow: 1;
+                color: white;
+                word-break: break-word;
+            }
+
+            .remove-btn {
+                background-color: #ff3366;
+                padding: 8px 15px;
+                font-size: 1rem;
+                margin-left: 10px;
+                box-shadow: 0px 4px 0px rgba(0,0,0,0.3);
+            }
+
+            /* --- SEARCH SECTION --- */
+            .search-box {
+                margin-bottom: 20px;
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .search-box input {
+                padding: 15px;
+                font-size: 1.2rem;
+                border: 4px solid #000;
+                background-color: var(--dove);
+                color: #000;
+                outline: none;
+                width: 350px;
+                font-family: 'Courier New', Courier, monospace;
+                font-weight: bold;
+                box-shadow: 0px 4px 0px rgba(0,0,0,0.3);
+            }
+
+            /* --- OUTPUT AREA --- */
+            .output-section {
+                margin: 60px auto;
+                width: 90%;
+                max-width: 1000px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            textarea {
+                width: 100%;
+                height: 300px;
+                background-color: #000;
+                color: #0f0;
+                border: 4px solid #000;
+                padding: 20px;
+                font-size: 1.3rem;
+                font-family: 'Courier New', Courier, monospace;
+                margin-top: 20px;
+                resize: vertical;
+            }
+
+            /* --- MODAL / POP-UP ANIMATION --- */
+            .modal-overlay {
+                position: fixed;
+                top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .modal-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .modal-content {
+                text-align: center;
+                min-width: 400px;
+                transform: scale(0.5);
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .modal-overlay.active .modal-content {
+                transform: scale(1);
+            }
+
+            .modal-content h3 {
+                color: var(--rose-garden);
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .modal-content p {
+                font-size: 3.5rem;
+                color: white;
+                text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+                margin-bottom: 30px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="wheel-section">
+            <h2 class="pixel-font">Character Wheel</h2>
+            <div class="wheel-container">
+                <div class="pointer"></div>
+                <canvas id="charWheel" width="650" height="650"></canvas> 
+            </div>
+            <button class="pixel-font pixel-btn" id="spinCharBtn">Spin Character</button>
+        </div>
+
+        <div class="players-wrapper" id="players-wrapper">
+            </div>
+
+        <div class="wheel-section">
+            <h2 class="pixel-font">Perk Wheel</h2>
+            <div class="search-box">
+                <input type="text" id="perkSearch" placeholder="Search specific char...">
+                <button class="pixel-font pixel-btn" onclick="playClick(); setSpecificPerks();">Set</button>
+                <button class="pixel-font pixel-btn" onclick="playClick(); resetGenericPerks();" style="background-color: #6a5acd;">Base</button>
+            </div>
+            <div class="wheel-container">
+                <div class="pointer"></div>
+                <canvas id="perkWheel" width="550" height="550"></canvas>
+            </div>
+            <button class="pixel-font pixel-btn" id="spinPerkBtn">Spin Perk</button>
+        </div>
+
+        <div class="wheel-section">
+            <h2 class="pixel-font">Environment Wheel</h2>
+            <div class="wheel-container">
+                <div class="pointer"></div>
+                <canvas id="envWheel" width="550" height="550"></canvas>
+            </div>
+            <button class="pixel-font pixel-btn" id="spinEnvBtn">Spin Environment</button>
+            <div class="pixel-box" style="margin-top: 30px; font-size: 2rem; width: 80%; max-width: 600px;" id="envOutput">Environment: ?</div>
+        </div>
+
+        <div class="output-section">
+            <button class="pixel-font pixel-btn" onclick="playClick(); generateAIPrompt();" style="width: 100%; max-width: 800px;">Generate AI Prompt</button>
+            <textarea class="pixel-box" id="aiPromptOutput" readonly placeholder="Your AI prompt will appear here..."></textarea>
+        </div>
+
+        <div class="modal-overlay" id="resultModal">
+            <div class="pixel-box modal-content">
+                <h3 class="pixel-font" id="modalType">Winner!</h3>
+                <p class="pixel-font" id="modalResult">???</p>
+                <button class="pixel-font pixel-btn" onclick="playClick(); closeModal();">CONTINUE</button>
+            </div>
+        </div>
+
+        <script>
+            // --- AUDIO SYSTEM (Web Audio API) ---
+        let audioCtx;
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function playClick() {
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    // Square waves create that retro 8-bit sound
+    osc.type = 'square'; 
+    
+    // A quick pitch jump gives it a quirky "bloop" effect
+    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.04); 
+    
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.12);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.12);
+}
+
+function playTick() {
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    // A very high, incredibly short blip
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+    
+    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.03);
+}
+
+function playWin() {
+    initAudio();
+    // Added a high G6 at the end for a victorious Gacha sound
+    const notes = [523.25, 659.25, 783.99, 1046.50, 1567.98]; 
+    
+    notes.forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.type = 'square'; 
+        
+        // Speeding up the time between notes (0.06 instead of 0.1)
+        const startTime = audioCtx.currentTime + (i * 0.06);
+        osc.frequency.setValueAtTime(freq, startTime);
+        
+        gain.gain.setValueAtTime(0.06, startTime);
+        gain.gain.linearRampToValueAtTime(0, startTime + 0.15);
+        
+        osc.start(startTime);
+        osc.stop(startTime + 0.15);
+    });
+}
+
+            // --- DATA SETUP ---
+            const players = ["Hoang", "Linh", "Bendy", "Minh", "Quoc Anh", "Dat"];
+            let playerStats = players.map(() => ({ char: "", perk: "" }));
+            let currentEnvironment = "Unknown";
+
+
+  const characters = [
+  // Main / Famous
+    // Main Icons / Broken Tier (12)
+  "Jotaro Kujo (Star Platinum)", "DIO (The World)", "Josuke (Crazy Diamond)", "Giorno (Gold Experience)", "Golden Experience Requiem", "Diavolo (King Crimson)",
+  "Pucci (Made In Heaven)", "Funny Valentine (D4C)", "D4C Love Train", "Johnny (Tusk Act 4)", "Wonder Of U", "Kars",
+
+  // Strong / Fan Favorites (10)
+  "Weather Report", "Killer Queen", "Bites The Dust", "Heaven's Door", "The Hand", "Cream",
+  "C-Moon", "Soft & Wet", "The World Over Heaven", "Silver Chariot Requiem",
+
+  // Combat / Tactical Mid Tier (22)
+  "Magician's Red", "Hermit Purple", "Hierophant Green", "Sticky Fingers", "Red Hot Chili Pepper", "Purple Haze",
+  "White Album", "Metallica", "Oasis", "Scary Monsters", "Catch The Rainbow", "Ball Breaker",
+  "Paisley Park", "Foo Fighters", "Diver Down", "Bohemian Rhapsody", "Planet Waves", "Mandom",
+  "Civil War", "20th Century Boy", "Aerosmith", "Moody Blues",
+
+  // Weird / Chaos Picks (16)
+  "Justice", "Death Thirteen", "Geb", "Anubis", "Harvest", "Super Fly",
+  "Cheap Trick", "Notorious B.I.G", "Green Day", "Jail House Lock", "Under World", "Ticket To Ride",
+  "Vitamin C", "Blue Hawaii", "Doctor Wu", "Ozon Baby",
+
+
+
+
+  
+// DEVIL MAY CRY
+  // Main Icons / Famous Characters (12)
+  "Dante", "Vergil", "Nero", "V_dmc", "Trish_dmc", "Lady_dmc",
+  "Sparda_dmc", "Mundus_dmc", "Urizen_dmc", "NeloAngelo_dmc", "Lucia_dmc", "Arkham_dmc",
+
+  // Major Bosses / Strong Enemies (12)
+  "Cerberus_dmc", "Beowulf_dmc", "AgniAndRudra_dmc", "Nevan_dmc", "Geryon_dmc", "CavaliereAngelo_dmc",
+  "Artemis_dmc", "Malphas_dmc", "Gilgamesh_dmc", "Phantom_dmc", "Nightmare_dmc", "Argosax_dmc",
+
+  // Mid Tier / Combat Demons (14)
+  "ProtoAngelo_dmc", "ScudoAngelo_dmc", "AltoAngelo_dmc", "BiancoAngelo_dmc", "Fury_dmc", "Blitz_dmc",
+  "Chaos_dmc", "Riot_dmc", "DeathScissors_dmc", "HellVanguard_dmc", "Abyss_dmc", "Mephisto_dmc",
+  "Faust_dmc", "Nobody_dmc",
+
+  // Lesser Known / Weak / Chaos Picks (12)
+  "Empusa_dmc", "EmpusaQueen_dmc", "HellCaina_dmc", "HellAntenora_dmc", "HellJudecca_dmc", "Pyrobat_dmc",
+  "SoulEater_dmc", "TheFallen_dmc", "Arachne_dmc", "Plasma_dmc", "Marionette_dmc", "InfestedTank_dmc",
+
+
+
+
+
+
+//INVINCIBLE
+  // Main Icons / Famous Characters (10)
+  "Invincible", "OmniMan", "AtomEve", "AllenTheAlien", "BattleBeast",
+  "Robot_invincible", "Thragg", "Conquest", "AngstromLevy", "Immortal_invincible",
+
+  // Strong Viltrumites / Major Fighters (10)
+  "Anissa_invincible", "Lucan_invincible", "Kregg_invincible", "Thaedus_invincible", "NolanGrayson_invincible",
+  "OliverGrayson_invincible", "SpaceRacer_invincible", "KomodoDragon_invincible", "MachineHead_invincible", "Titan_invincible",
+
+  // Mid Tier / Tactical Characters (8)
+  "RexSplode_invincible", "DupliKate_invincible", "ShrinkingRae_invincible", "BlackSamson_invincible",
+  "MonsterGirl_invincible", "Bulletproof_invincible", "Shapesmith_invincible", "Darkwing_invincible",
+
+  // Lesser Known / Weak / Chaos Picks (7)
+  "MaulerTwin_invincible", "Elephant_invincible", "MultiPaul_invincible", "Killcannon_invincible",
+  "Isotope_invincible", "DocSeismic_invincible", "Reanimen_invincible",
+
+
+
+
+
+
+    // Main Icons / Famous Characters (10)
+  "Yuji", "Gojo", "Sukuna", "Megumi", "Yuta",
+  "Toji", "Geto", "Kenjaku", "Maki", "Mahito",
+
+  // Strong Fighters / Fan Favorites (10)
+  "Todo", "Nanami", "Hakari", "Kashimo", "Jogo",
+  "Hanami_jjk", "Dagon_jjk", "Choso", "Naoya_jjk", "Uraume_jjk",
+
+  // Mid Tier / Tactical Characters (6)
+  "Nobara", "Panda", "Inumaki", "Mechamaru", "Mai_jjk", "Kusakabe_jjk",
+
+  // Lesser Known / Weak / Chaos Picks (4)
+  "Junpei_jjk", "Miwa_jjk", "Haruta_jjk", "Eso_jjk",
+
+
+
+
+
+  //BLACK MYTH WUKONG
+    // Main Icons / Famous Characters (10)
+  "DestinedOne_bmwk", "ErlangShen_bmwk", "YellowBrow_bmwk", "BlackBearGuai_bmwk", "RedBoy_bmwk",
+  "YakshaKing_bmwk", "TigerVanguard_bmwk", "YellowWindSage_bmwk", "Bajie_bmwk", "Wukong_bmwk",
+
+  // Major Bosses / Strong Enemies (12)
+  "HundredEyedDaoist_bmwk", "KangJinLoong_bmwk", "CyanLoong_bmwk", "YinTiger_bmwk",
+  "Scorpionlord_bmwk", "VenomDaoist_bmwk", "StoneMonkey_bmwk", "GreatSageBrokenShell_bmwk",
+  "WhitecladNoble_bmwk", "BlackLoong_bmwk", "RedLoong_bmwk", "YellowLoong_bmwk",
+
+  // Mid Tier / Recognizable Bosses (10)
+  "CaptainWiseVoice_bmwk", "CaptainVoidIllusion_bmwk", "CaptainLotusVision_bmwk", "NonWhite_bmwk",
+  "NonAble_bmwk", "TigerAcolyte_bmwk", "MacaqueChief_bmwk", "FlintChief_bmwk",
+  "FlintVanguard_bmwk", "CloudyMistMistyCloud_bmwk",
+
+  // Lesser Known / Chaos Picks (8)
+  "LangLiGuhh_bmwk", "EarthWolf_bmwk", "RatGovernor_bmwk", "RatPrince_bmwk",
+  "Fungiwoman_bmwk", "ApramanaBat_bmwk", "ClayVajra_bmwk", "MushroomGuai_bmwk",
+
+];
+
+
+
+
+const genericPerks = [
+  // Buffs
+  "1. Faster Reactions",
+  "2. Infinite Stamina",
+  "3. Regeneration",
+  "4. Increased Durability",
+  "5. Faster Cooldowns",
+  "6. Auto Dodge Chance",
+  "7. Critical Hit Chance",
+  "8. Heightened Awareness",
+  "9. Reduced Ability Cost",
+  "10. Battle IQ Boost",
+  "11. Adrenaline Rush",
+  "12. Temporary Invulnerability",
+  "13. Second Life",
+
+  // Debuffs
+  "14. Slower Reactions",
+  "15. Exhausted",
+  "16. Random Ability Failure",
+  "17. Fragile Body",
+  "18. Delayed Healing",
+  "19. Reduced Accuracy",
+  "20. Longer Cooldowns",
+  "21. Blurred Vision",
+  "22. Panic Under Pressure",
+  "23. Cannot Run",
+  "24. Tunnel Vision",
+  "25. Glass Cannon",
+  "26. One Life Only",
+
+  // Neutral / Chaos
+  "27. No Perk",
+ 
+];
+
+            const environments = ["Volcano", "Deep Sea", "Space Station", "Neon City", "Medieval Castle", "Cyberpunk Slums", "Desert Ruins", "Ice Cavern"];
+
+            const specificPerks = {
+                "dante": ["Devil Trigger", "Trickster Dash", "Royal Guard", "Swordmaster", "Ebony & Ivory"],
+                "joseph": ["Hamon Overdrive", "Clacker Volley", "Tommy Gun", "Secret Technique"],
+                "goku": ["Super Saiyan", "Kamehameha", "Instant Transmission", "Spirit Bomb"],
+                "batman": ["Utility Belt", "Batmobile", "Grappling Hook", "Stealth Master"]
+            };
+
+            let currentPerkList = [...genericPerks];
+
+// 👉 Shuffles a massive list and picks a specific amount to show
+function pickRandom(arr, count) {
+    let shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+        function getRandomColor() {
+        const hue = Math.floor(Math.random() * 360);
+        // Keeping saturation and lightness high so they stay "Bright"
+        return `hsl(${hue}, 80%, 60%)`; 
+    }
+
+            // --- RENDER PLAYER CARDS ---
+            function renderPlayers() {
+                const wrapper = document.getElementById('players-wrapper');
+                wrapper.innerHTML = "";
+                players.forEach((name, index) => {
+                    wrapper.innerHTML += `
+                        <div class="player-card pixel-box">
+                            <h3 class="pixel-font">${index + 1}. ${name}</h3>
+                            <div class="slot">
+                                <span class="slot-label">Char:</span>
+                                <span class="slot-value">${playerStats[index].char || "..."}</span>
+                                <button class="pixel-font pixel-btn remove-btn" onclick="playClick(); removeTrait(${index}, 'char')">X</button>
+                            </div>
+                            <div class="slot">
+                                <span class="slot-label">Perk:</span>
+                                <span class="slot-value">${playerStats[index].perk || "..."}</span>
+                                <button class="pixel-font pixel-btn remove-btn" onclick="playClick(); removeTrait(${index}, 'perk')">X</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            function removeTrait(playerIndex, type) {
+                playerStats[playerIndex][type] = "";
+                renderPlayers();
+            }
+
+            // --- MODAL LOGIC ---
+            function showModal(type, result) {
+                document.getElementById('modalType').innerText = type + " ROLLED!";
+                document.getElementById('modalResult').innerText = result;
+                document.getElementById('resultModal').classList.add('active');
+                playWin();
+            }
+
+            function closeModal() {
+                document.getElementById('resultModal').classList.remove('active');
+            }
+// ✅ PLACE THESE ABOVE THE CLASS
+const CHAR_FONTS = {
+    "dante": "'Nosifer', cursive",       
+    "mario": "'Press Start 2P', cursive" 
+};
+
+function getFont(name) {
+    return CHAR_FONTS[name.toLowerCase()] || "'Silkscreen', cursive";
+}
+            // --- WHEEL LOGIC CLASS ---
+           class SpinnerWheel {
+                // 👉 1. Constructor now takes a masterList and a maxItems limit (defaults to 25)
+                constructor(canvasId, masterList, maxItems = 25) {
+                    this.canvas = document.getElementById(canvasId);
+                    this.ctx = this.canvas.getContext('2d');
+                    this.masterList = masterList;
+                    this.maxItems = maxItems;
+                    
+                    // Pick the initial small batch for the screen
+                    this.items = pickRandom(this.masterList, this.maxItems);
+                    
+                    this.currentAngle = 0;
+                    this.isSpinning = false;
+                    this.draw();
+                }
+
+            updateItems(newMasterList) {
+                    this.masterList = newMasterList;
+                    this.items = pickRandom(this.masterList, this.maxItems);
+                    this.currentAngle = 0;
+                    this.draw();
+                }
+                
+
+
+    // 👉 2. Replace your current draw() with this one:
+    draw() {
+        const cx = this.canvas.width / 2;
+        const cy = this.canvas.height / 2;
+        const radius = cx - 10;
+        const sliceAngle = (Math.PI * 2) / this.items.length;
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        for (let i = 0; i < this.items.length; i++) {
+            this.ctx.save();
+            this.ctx.translate(cx, cy);
+            this.ctx.rotate(this.currentAngle + (i * sliceAngle));
+
+            // Draw Slice
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, 0);
+            this.ctx.arc(0, 0, radius, 0, sliceAngle);
+            
+            // Generate a color once per slice
+            if (!this.sliceColors) this.sliceColors = [];
+            if (!this.sliceColors[i]) this.sliceColors[i] = getRandomColor();
+            
+            this.ctx.fillStyle = this.sliceColors[i];
+            this.ctx.fill();
+            this.ctx.lineWidth = 1; // Super thin lines for high counts
+            this.ctx.strokeStyle = "#000";
+            this.ctx.stroke();
+
+            // Draw Text (Only if slice is big enough to read)
+            if (this.items.length < 60) {
+                this.ctx.rotate(sliceAngle / 2);
+                this.ctx.textAlign = "right";
+                
+                // Get the custom font or default pixel font
+                const currentFont = getFont(this.items[i]);
+                this.ctx.font = `bold 18px ${currentFont}`; 
+                
+                this.ctx.fillStyle = "#fff";     // White text
+                this.ctx.strokeStyle = "#000";   // Black outline
+                this.ctx.lineWidth = 3;          // Outline thickness
+                
+                // Draw outline first, then fill text over it
+                this.ctx.strokeText(this.items[i], radius - 30, 6);
+                this.ctx.fillText(this.items[i], radius - 30, 6);
+            }
+            this.ctx.restore();
+        }
+    }
+
+
+spin(callback) {
+    if (this.isSpinning) return;
+
+    // Fallback: If masterList is missing for some reason, don't crash
+    if (this.masterList) {
+        this.items = pickRandom(this.masterList, this.maxItems);
+    }
+    
+    this.draw(); 
+    this.isSpinning = true;
+    playClick();
+
+    const spinTime = 4000 + Math.random() * 1000;
+    const spinAmount = Math.PI * 14 + Math.random() * Math.PI * 4;
+    const startTime = performance.now();
+    const startAngle = this.currentAngle;
+    let lastTickAngle = startAngle;
+    
+    // IMPORTANT: Define this here so animate() can see it
+    const sliceAngle = (Math.PI * 2) / this.items.length;
+
+    const animate = (time) => {
+        let progress = (time - startTime) / spinTime;
+        if (progress > 1) progress = 1;
+        
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        this.currentAngle = startAngle + spinAmount * easeProgress;
+        
+        if (Math.floor(this.currentAngle / sliceAngle) > Math.floor(lastTickAngle / sliceAngle)) {
+            playTick();
+            lastTickAngle = this.currentAngle;
+        }
+
+        this.draw();
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            this.isSpinning = false;
+            const offsetAngle = (Math.PI * 1.5 - this.currentAngle) % (Math.PI * 2);
+            const normalizedAngle = offsetAngle < 0 ? offsetAngle + Math.PI * 2 : offsetAngle;
+            const winningIndex = Math.floor(normalizedAngle / sliceAngle);
+            setTimeout(() => callback(this.items[winningIndex]), 200);
+        }
+    };
+    requestAnimationFrame(animate);
+}
+
+           }
+            
+
+            // --- INITIALIZE WHEELS ---
+            const charWheel = new SpinnerWheel('charWheel', characters, 40);
+            const perkWheel = new SpinnerWheel('perkWheel', currentPerkList, 30);
+            const envWheel = new SpinnerWheel('envWheel', environments, 30);
+
+            // --- BUTTON ACTIONS ---
+            document.getElementById('spinCharBtn').addEventListener('click', () => {
+                charWheel.spin((winner) => {
+                    showModal("CHARACTER", winner);
+                    for (let i = 0; i < players.length; i++) {
+                        if (playerStats[i].char === "") {
+                            playerStats[i].char = winner;
+                            renderPlayers();
+                            break;
+                        }
+                    }
+                });
+            });
+
+            document.getElementById('spinPerkBtn').addEventListener('click', () => {
+                perkWheel.spin((winner) => {
+                    showModal("PERK", winner);
+                    for (let i = 0; i < players.length; i++) {
+                        if (playerStats[i].perk === "") {
+                            playerStats[i].perk = winner;
+                            renderPlayers();
+                            break;
+                        }
+                    }
+                });
+            });
+
+            document.getElementById('spinEnvBtn').addEventListener('click', () => {
+                envWheel.spin((winner) => {
+                    showModal("ENVIRONMENT", winner);
+                    currentEnvironment = winner;
+                    document.getElementById('envOutput').innerText = `Environment: ${winner}`;
+                });
+            });
+
+            function setSpecificPerks() {
+                const searchInput = document.getElementById('perkSearch').value.toLowerCase().trim();
+                if (specificPerks[searchInput]) {
+                    currentPerkList = specificPerks[searchInput];
+                    perkWheel.updateItems(currentPerkList);
+                } else {
+                    alert("Character not found! Using current list.");
+                }
+            }
+
+            function resetGenericPerks() {
+                document.getElementById('perkSearch').value = "";
+                currentPerkList = [...genericPerks];
+                perkWheel.updateItems(currentPerkList);
+            }
+
+            function generateAIPrompt() {
+                let promptText = "Between ";
+                for (let i = 0; i < players.length; i++) {
+                    let char = playerStats[i].char || "No Character";
+                    let perk = playerStats[i].perk || "No Perk";
+                    promptText += `( ${players[i]} ${char}, with ( ${perk} ) )`;
+                    if (i < players.length - 1) promptText += ",\n";
+                }
+                promptText += `\nIn <${currentEnvironment}>`;
+                document.getElementById('aiPromptOutput').value = promptText;
+            }
+
+            renderPlayers();
+
+            
+        </script>
+    </body>
+    </html>
