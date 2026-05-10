@@ -61,18 +61,31 @@ const clickSound = new Audio('Sounds/click.wav');
 
 
 
-        // ==========================================
+    
         // 3. DATA SETUP
         // ==========================================
-        const players = ["Hoang", "Linh", "Bendy", "Minh", "Quoc Anh", "Dat"];
-        // NEW: Added bgImage to track their custom background
-        let playerStats = players.map(() => ({ char: "", perk: "", bgImage: null }));
+        const players = ["Hoang", "Linh", "Bendy", "Minh", "Quoc Anh",];
+
+        // HERE IS YOUR SPECIFIC PATH SETUP! 
+        // Just put the path to the image you want for each person in order.
+        const playerBackgrounds = [
+            "Images/hoangnew_bg.png",   // 0: Hoang's background
+            "Images/linh_bg.png",    // 1: Linh's background
+            "Images/bendy_bg.png",   // 2: Bendy's background
+            "Images/minh_bg.png",    // 3: Minh's background
+            "Images/quocanh_bg.png", // 4: Quoc Anh's background
+           /* "Images/hoang_bg.png"      // 5: Dat's background*/
+        ];
+
+        // Now it automatically grabs the image from the list above!
+        let playerStats = players.map((name, index) => ({ 
+            char: "", 
+            perk: "", 
+            bgImage: playerBackgrounds[index] 
+        }));
+        
         let currentEnvironment = "Unknown";
-
-
-
         let currentPerkList = [...genericPerks];
-
         function pickRandom(arr, count) {
             let copy = [...arr];
             for (let i = copy.length - 1; i > 0; i--) {
@@ -104,7 +117,7 @@ const clickSound = new Audio('Sounds/click.wav');
             }
         }
 
-        function renderPlayers() {
+     function renderPlayers() {
             const wrapper = document.getElementById('players-wrapper');
             let builtHTML = ""; 
             
@@ -112,18 +125,16 @@ const clickSound = new Audio('Sounds/click.wav');
                 const charDisplay = formatWithIcon(playerStats[index].char);
                 const perkDisplay = formatWithIcon(playerStats[index].perk);
                 
-                // If they have a background, apply it with a dark gradient overlay so text is readable
-                const bgStyle = playerStats[index].bgImage 
-                    ? `background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('${playerStats[index].bgImage}');` 
+                // Applies your specific background with a dark overlay so text is readable
+            const bgStyle = playerStats[index].bgImage 
+                    ? `background-image: url('${playerStats[index].bgImage}');` 
                     : "";
 
+                // Notice: The upload input and label are totally gone! Same exact class names used.
                 builtHTML += `
                     <div class="player-card pixel-box" style="${bgStyle}">
                         <div class="player-card-header">
                             <h3 class="pixel-font">${index + 1}. ${name}</h3>
-                            
-                            <input type="file" id="bg-upload-${index}" accept="image/*" style="display: none;" onchange="handleBGUpload(event, ${index})">
-                            <label for="bg-upload-${index}" class="pixel-font pixel-btn upload-btn">Upload BG</label>
                         </div>
                         
                         <div class="slot">
