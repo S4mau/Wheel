@@ -19,20 +19,19 @@
             padding: 0;
         }
 
-        body {
-            background-color: var(--ganache);
-            background-image: repeating-conic-gradient(
-                var(--vanilla-pod) 0% 25%, 
-                transparent 0% 50%
-            );
-            background-size: 100px 100px;
-            color: var(--dove);
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
+      body {
+    background-color: var(--ganache);
+    /* I added a radial-gradient here to make the center "glow" */
+    background-image: 
+        radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%),
+        repeating-conic-gradient(
+            var(--vanilla-pod) 0% 25%, 
+            transparent 0% 50%
+        );
+    background-size: 100% 100%, 100px 100px; /* first one covers screen, second is your grid */
+    
+    /* ... rest of your code ... */
+}
 
         .pixel-font {
             font-family: 'Silkscreen', cursive;
@@ -155,22 +154,59 @@
         }
 
         /* Background image logic for the card */
-        .player-card {
-            width: 400px;
+.player-card {
+            width: calc(50% - 20px);
+            min-width: 350px;
             text-align: left;
             position: relative;
-            background-size: cover;
+            background-size: 100% 100%; 
             background-position: center;
-            /* Default background stays pixel-bg if no image is uploaded */
+            background-repeat: no-repeat;
+            border: none !important;
+            box-shadow: none !important;
+            background-color: transparent !important;
+            
+            /* 1. ADD THIS MAGIC LINE */
+            box-sizing: border-box; 
+            
+            /* 2. ADJUST THESE NUMBERS TO PUSH CONTENT INWARD */
+            /* The order is: TOP | RIGHT | BOTTOM | LEFT */
+            /* Increase the 60px values to push the sides further inward >><< */
+            padding: 90px 90px 40px 90px !important; 
         }
-
-        .player-card-header {
+        /* You can actually delete the .upload-btn CSS block entirely now since we don't need it! */
+.player-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #000;
-            padding-bottom: 10px;
+            border-bottom: none;
+            padding-bottom: 0;
             margin-bottom: 20px;
+            
+            /* Ensures the header doesn't break out of the padding */
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+
+        .slot {
+            background-color: transparent; 
+            backdrop-filter: none; 
+            border: none; 
+            padding: 5px 0; 
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            font-size: 1.2rem;
+            
+            /* Ensures the slot doesn't break out of the padding */
+            width: 100%; 
+            box-sizing: border-box; 
+
+
+
+            
         }
 
         .player-card h3 {
@@ -179,28 +215,25 @@
             text-shadow: 2px 2px 0 #000;
         }
 
-        /* Tiny upload button styling */
-        .upload-btn {
-            padding: 5px 10px;
-            font-size: 0.8rem;
-            box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4);
-            margin: 0;
-            text-shadow: none;
-            background-color: #2b1f21;
-        }
 
-        /* Transparent Glass Slots */
-        .slot {
-            background-color: rgba(0, 0, 0, 0.3); /* Transparent */
-            backdrop-filter: blur(5px); /* Blurs the background image behind it! */
-            border: 2px solid #000;
-            padding: 15px;
+
+.slot {
+            /* Black background with 30% opacity (0.3) */
+            /* Change 0.3 to 0.5 if you want it darker, or 0.1 for lighter */
+            background-color: rgba(0, 0, 0, 0.3); 
+            
+            /* Optional: This makes the background image behind the slot look blurry */
+            backdrop-filter: blur(4px); 
+            
+            border: none;
+            padding: 5px 15px; /* Added 15px to sides so text isn't touching the edge */
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             min-height: 60px;
             font-size: 1.2rem;
+            border-radius: 4px; /* Gives the transparent box slightly soft corners */
         }
 
         .slot-label {
