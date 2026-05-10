@@ -1,118 +1,298 @@
    const characters = [
-// --- God Tier (11 characters) ---
-    "Jotaro Kujo (Star Platinum)", "DIO (The World)", "Josuke (Crazy Diamond)", 
-    "Giorno (Gold Experience)", "Gold Experience Requiem", "Diavolo (King Crimson)", 
-    "Pucci (Made In Heaven)", "Johnny (Tusk Act 4)", "Wonder Of U", "Kars", "D4C","The World Over Heaven",
+// ======================================================
+// JOJO'S BIZARRE ADVENTURE
+// ======================================================
 
-    // --- High Tier (10 characters) ---
-    "Weather Report", "Killer Queen", "Bites The Dust", "Heaven's Door", 
-    "The Hand", "Cream", "C-Moon", "Soft & Wet", "The World Over Heaven", "Silver Chariot Requiem",
+// --- God Tier ---
 
-    // --- Mid Tier (22 characters) ---
-    "Magician's Red", "Hermit Purple", "Hierophant Green", "Sticky Fingers", 
-    "Red Hot Chili Pepper", "Purple Haze", "White Album", "Metallica", "Oasis", 
-    "Scary Monsters", "Catch The Rainbow", "Ball Breaker", "Paisley Park", 
-    "Foo Fighters", "Diver Down", "Bohemian Rhapsody", "Planet Waves", 
-    "Mandom", "Civil War", "20th Century Boy", "Aerosmith", "Moody Blues",
+"StarPlatinum_jojo",
 
-    // --- Low / Chaos Tier (26 characters) ---
-    "Justice", "Death Thirteen", "Geb", "Anubis", "Harvest", "Super Fly", 
-    "Cheap Trick", "Notorious B.I.G", "Green Day", "Jail House Lock", "Under World", 
-    "Ticket To Ride", "Vitamin C", "Blue Hawaii", "Doctor Wu", "Ozon Baby", 
-    "Khnum", "Tohth", "Hey Ya!", "Survivor", "Empress", "Tenore Sax", 
-    "Boy II Man", "Fun Fun Fun", "Rolling Stones", "Yo-Yo Ma",
+"TheWorld_jojo",
+
+"CrazyDiamond_jojo",
+
+"GoldExperience_jojo",
+"GoldExperienceRequiem_jojo",
+
+"KingCrimson_jojo",
+,
+"MadeInHeaven_jojo",
+
+"TuskAct4_jojo",
+"WonderOfU_jojo",
+"Kars_jojo",
+"D4C_jojo",
+"TheWorldOverHeaven_jojo",
+
+// --- High Tier ---
+"WeatherReport_jojo",
+"KillerQueen_jojo",
+"BitesTheDust_jojo",
+"HeavensDoor_jojo",
+"TheHand_jojo",
+"Cream_jojo",
+"CMoon_jojo",
+"SoftAndWet_jojo",
+"SilverChariotRequiem_jojo",
+
+// --- Mid Tier ---
+"MagiciansRed_jojo",
+"HermitPurple_jojo",
+"HierophantGreen_jojo",
+"StickyFingers_jojo",
+"RedHotChiliPepper_jojo",
+"PurpleHaze_jojo",
+"WhiteAlbum_jojo",
+"Metallica_jojo",
+"Oasis_jojo",
+"ScaryMonsters_jojo",
+"CatchTheRainbow_jojo",
+"BallBreaker_jojo",
+"PaisleyPark_jojo",
+"FooFighters_jojo",
+"DiverDown_jojo",
+"BohemianRhapsody_jojo",
+"PlanetWaves_jojo",
+"Mandom_jojo",
+"CivilWar_jojo",
+"20thCenturyBoy_jojo",
+"Aerosmith_jojo",
+"MoodyBlues_jojo",
+
+// --- Low / Chaos Tier ---
+"Justice_jojo",
+"DeathThirteen_jojo",
+"Geb_jojo",
+"Anubis_jojo",
+"Harvest_jojo",
+"SuperFly_jojo",
+"CheapTrick_jojo",
+"NotoriousBIG_jojo",
+"GreenDay_jojo",
+"JailHouseLock_jojo",
+"UnderWorld_jojo",
+"TicketToRide_jojo",
+"VitaminC_jojo",
+"BlueHawaii_jojo",
+"DoctorWu_jojo",
+"OzonBaby_jojo",
+"Khnum_jojo",
+"Tohth_jojo",
+"HeyYa_jojo",
+"Survivor_jojo",
+"Empress_jojo",
+"TenoreSax_jojo",
+"BoyIIman_jojo",
+"FunFunFun_jojo",
+"RollingStones_jojo",
+"YoYoMa_jojo",
 
 
-  
-
-
-
-
-    
-
-  
+// ======================================================
 // DEVIL MAY CRY
-  // Main Icons / Famous Characters (12)
-  "Dante", "Vergil", "Nero", "V_dmc", "Trish_dmc", "Lady_dmc",
-  "Sparda_dmc", "Mundus_dmc", "Urizen_dmc", "NeloAngelo_dmc", "Lucia_dmc", "Arkham_dmc",
+// ======================================================
 
-  // Major Bosses / Strong Enemies (12)
-  "Cerberus_dmc", "Beowulf_dmc", "AgniAndRudra_dmc", "Nevan_dmc", "Geryon_dmc", "CavaliereAngelo_dmc",
-  "Artemis_dmc", "Malphas_dmc", "Gilgamesh_dmc", "Phantom_dmc", "Nightmare_dmc", "Argosax_dmc",
+// --- Main Icons / Famous Characters ---
+"Dante_dmc",
+"Vergil_dmc",
+"Nero_dmc",
+"V_dmc",
+"Trish_dmc",
+"Lady_dmc",
+"Sparda_dmc",
+"Mundus_dmc",
+"Urizen_dmc",
+"NeloAngelo_dmc",
+"Lucia_dmc",
+"Arkham_dmc",
 
-  // Mid Tier / Combat Demons (14)
-  "ProtoAngelo_dmc", "ScudoAngelo_dmc", "AltoAngelo_dmc", "BiancoAngelo_dmc", "Fury_dmc", "Blitz_dmc",
-  "Chaos_dmc", "Riot_dmc", "DeathScissors_dmc", "HellVanguard_dmc", "Abyss_dmc", "Mephisto_dmc",
-  "Faust_dmc", "Nobody_dmc",
+// --- Major Bosses / Strong Enemies ---
+"Cerberus_dmc",
+"Beowulf_dmc",
+"AgniAndRudra_dmc",
+"Nevan_dmc",
+"Geryon_dmc",
+"CavaliereAngelo_dmc",
+"Artemis_dmc",
+"Malphas_dmc",
+"Gilgamesh_dmc",
+"Phantom_dmc",
+"Nightmare_dmc",
+"Argosax_dmc",
 
-  // Lesser Known / Weak / Chaos Picks (12)
-  "Empusa_dmc", "EmpusaQueen_dmc", "HellCaina_dmc", "HellAntenora_dmc", "HellJudecca_dmc", "Pyrobat_dmc",
-  "SoulEater_dmc", "TheFallen_dmc", "Arachne_dmc", "Plasma_dmc", "Marionette_dmc", "InfestedTank_dmc",
+// --- Mid Tier / Combat Demons ---
+"ProtoAngelo_dmc",
+"ScudoAngelo_dmc",
+"AltoAngelo_dmc",
+"BiancoAngelo_dmc",
+"Fury_dmc",
+"Blitz_dmc",
+"Chaos_dmc",
+"Riot_dmc",
+"DeathScissors_dmc",
+"HellVanguard_dmc",
+"Abyss_dmc",
+"Mephisto_dmc",
+"Faust_dmc",
+"Nobody_dmc",
 
-
-
-
-
-
-//INVINCIBLE
-  // Main Icons / Famous Characters (10)
-  "Invincible", "OmniMan", "AtomEve", "AllenTheAlien", "BattleBeast",
-  "Robot_invincible", "Thragg", "Conquest", "AngstromLevy", "Immortal_invincible",
-
-  // Strong Viltrumites / Major Fighters (10)
-  "Anissa_invincible", "Lucan_invincible", "Kregg_invincible", "Thaedus_invincible", "NolanGrayson_invincible",
-  "OliverGrayson_invincible", "SpaceRacer_invincible", "KomodoDragon_invincible", "MachineHead_invincible", "Titan_invincible",
-
-  // Mid Tier / Tactical Characters (8)
-  "RexSplode_invincible", "DupliKate_invincible", "ShrinkingRae_invincible", "BlackSamson_invincible",
-  "MonsterGirl_invincible", "Bulletproof_invincible", "Shapesmith_invincible", "Darkwing_invincible",
-
-  // Lesser Known / Weak / Chaos Picks (7)
-  "MaulerTwin_invincible", "Elephant_invincible", "MultiPaul_invincible", "Killcannon_invincible",
-  "Isotope_invincible", "DocSeismic_invincible", "Reanimen_invincible",
-
-
-
-
-
-
-    // Main Icons / Famous Characters (10)
-  "Yuji", "Gojo", "Sukuna", "Megumi", "Yuta",
-  "Toji", "Geto", "Kenjaku", "Maki", "Mahito",
-
-  // Strong Fighters / Fan Favorites (10)
-  "Todo", "Nanami", "Hakari", "Kashimo", "Jogo",
-  "Hanami_jjk", "Dagon_jjk", "Choso", "Naoya_jjk", "Uraume_jjk",
-
-  // Mid Tier / Tactical Characters (6)
-  "Nobara", "Panda", "Inumaki", "Mechamaru", "Mai_jjk", "Kusakabe_jjk",
-
-  // Lesser Known / Weak / Chaos Picks (4)
-  "Junpei_jjk", "Miwa_jjk", "Haruta_jjk", "Eso_jjk",
+// --- Lesser Known / Weak / Chaos Picks ---
+"Empusa_dmc",
+"EmpusaQueen_dmc",
+"HellCaina_dmc",
+"HellAntenora_dmc",
+"HellJudecca_dmc",
+"Pyrobat_dmc",
+"SoulEater_dmc",
+"TheFallen_dmc",
+"Arachne_dmc",
+"Plasma_dmc",
+"Marionette_dmc",
+"InfestedTank_dmc",
 
 
+// ======================================================
+// INVINCIBLE
+// ======================================================
+
+// --- Main Icons / Famous Characters ---
+"Invincible_invincible",
+"OmniMan_invincible",
+"AtomEve_invincible",
+"AllenTheAlien_invincible",
+"BattleBeast_invincible",
+"Robot_invincible",
+"Thragg_invincible",
+"Conquest_invincible",
+"AngstromLevy_invincible",
+"Immortal_invincible",
+
+// --- Strong Viltrumites / Major Fighters ---
+"Anissa_invincible",
+"Lucan_invincible",
+"Kregg_invincible",
+"Thaedus_invincible",
+"NolanGrayson_invincible",
+"OliverGrayson_invincible",
+"SpaceRacer_invincible",
+"KomodoDragon_invincible",
+"MachineHead_invincible",
+"Titan_invincible",
+
+// --- Mid Tier / Tactical Characters ---
+"RexSplode_invincible",
+"DupliKate_invincible",
+"ShrinkingRae_invincible",
+"BlackSamson_invincible",
+"MonsterGirl_invincible",
+"Bulletproof_invincible",
+"Shapesmith_invincible",
+"Darkwing_invincible",
+
+// --- Lesser Known / Weak / Chaos Picks ---
+"MaulerTwin_invincible",
+"Elephant_invincible",
+"MultiPaul_invincible",
+"Killcannon_invincible",
+"Isotope_invincible",
+"DocSeismic_invincible",
+"Reanimen_invincible",
 
 
+// ======================================================
+// JUJUTSU KAISEN
+// ======================================================
 
-  //BLACK MYTH WUKONG
-    // Main Icons / Famous Characters (10)
-  "DestinedOne_bmwk", "ErlangShen_bmwk", "YellowBrow_bmwk", "BlackBearGuai_bmwk", "RedBoy_bmwk",
-  "YakshaKing_bmwk", "TigerVanguard_bmwk", "YellowWindSage_bmwk", "Bajie_bmwk", "Wukong_bmwk",
+// --- Main Icons / Famous Characters ---
+"Yuji_jjk",
+"Gojo_jjk",
+"Sukuna_jjk",
+"Megumi_jjk",
+"Yuta_jjk",
+"Toji_jjk",
+"Geto_jjk",
+"Kenjaku_jjk",
+"Maki_jjk",
+"Mahito_jjk",
 
-  // Major Bosses / Strong Enemies (12)
-  "HundredEyedDaoist_bmwk", "KangJinLoong_bmwk", "CyanLoong_bmwk", "YinTiger_bmwk",
-  "Scorpionlord_bmwk", "VenomDaoist_bmwk", "StoneMonkey_bmwk", "GreatSageBrokenShell_bmwk",
-  "WhitecladNoble_bmwk", "BlackLoong_bmwk", "RedLoong_bmwk", "YellowLoong_bmwk",
+// --- Strong Fighters / Fan Favorites ---
+"Todo_jjk",
+"Nanami_jjk",
+"Hakari_jjk",
+"Kashimo_jjk",
+"Jogo_jjk",
+"Hanami_jjk",
 
-  // Mid Tier / Recognizable Bosses (10)
-  "CaptainWiseVoice_bmwk", "CaptainVoidIllusion_bmwk", "CaptainLotusVision_bmwk", "NonWhite_bmwk",
-  "NonAble_bmwk", "TigerAcolyte_bmwk", "MacaqueChief_bmwk", "FlintChief_bmwk",
-  "FlintVanguard_bmwk", "CloudyMistMistyCloud_bmwk",
+"Choso_jjk",
+"Naoya_jjk",
+"Uraume_jjk",
 
-  // Lesser Known / Chaos Picks (8)
-  "LangLiGuhh_bmwk", "EarthWolf_bmwk", "RatGovernor_bmwk", "RatPrince_bmwk",
-  "Fungiwoman_bmwk", "ApramanaBat_bmwk", "ClayVajra_bmwk", "MushroomGuai_bmwk",
+// --- Mid Tier / Tactical Characters ---
+"Nobara_jjk",
+"Panda_jjk",
+"Inumaki_jjk",
+"Mechamaru_jjk",
+"Mai_jjk",
+"Kusakabe_jjk",
 
+// --- Lesser Known / Weak / Chaos Picks ---
+"Junpei_jjk",
+"Miwa_jjk",
+"Haruta_jjk",
+"Eso_jjk",
+
+
+// ======================================================
+// BLACK MYTH WUKONG
+// ======================================================
+
+// --- Main Icons / Famous Characters ---
+"Destined One_blackmythwukong",
+"Erlang Shen_blackmythwukong",
+"Yellow Brow_blackmythwukong",
+"Black Bear Guai_blackmythwukong",
+"Red Boy_blackmythwukong",
+"Yaksha King_blackmythwukong",
+"Tiger Vanguard_blackmythwukong",
+"Yellow Wind Sage_blackmythwukong",
+"Bajie_blackmythwukong",
+"Wukong_blackmythwukong",
+
+// --- Major Bosses / Strong Enemies ---
+"Hundred Eyed Daoist_blackmythwukong",
+"Kang Jin Loong_blackmythwukong",
+"Cyan Loong_blackmythwukong",
+"Yin Tiger_blackmythwukong",
+"Scorpionlord_blackmythwukong",
+"Venom Daoist_blackmythwukong",
+"Stone Monkey_blackmythwukong",
+"Great Sage Broken Shell_blackmythwukong",
+"Whiteclad Noble_blackmythwukong",
+"Black Loong_blackmythwukong",
+"Red Loong_blackmythwukong",
+"Yellow Loong_blackmythwukong",
+
+// --- Mid Tier / Recognizable Bosses ---
+"Captain Wise Voice_blackmythwukong",
+"Captain Void Illusion_blackmythwukong",
+"Captain Lotus Vision_blackmythwukong",
+"Non White_blackmythwukong",
+"Non Able_blackmythwukong",
+"Tiger Acolyte_blackmythwukong",
+"Macaque Chief_blackmythwukong",
+"Flint Chief_blackmythwukong",
+"Flint Vanguard_blackmythwukong",
+"Cloudy Mist Misty Cloud_blackmythwukong",
+
+// --- Lesser Known / Chaos Picks ---
+"Lang Li Guhh_blackmythwukong",
+"Earth Wolf_blackmythwukong",
+"Rat Governor_blackmythwukong",
+"Rat Prince_blackmythwukong",
+"Fungiwoman_blackmythwukong",
+"Apramana Bat_blackmythwukong",
+"Clay Vajra_blackmythwukong",
+"Mushroom Guai_blackmythwukong",
 
 
 
@@ -120,12 +300,23 @@
         ];
 
         const genericPerks = [
-            "Faster Reactions", "Infinite Stamina", "Regeneration", "4. Increased Durability", "5. Faster Cooldowns",
-            "Auto Dodge Chance", "Critical Hit Chance", "Heightened Awareness", "9. Reduced Ability Cost",
-            "Battle IQ Boost", "Adrenaline Rush", " Temporary Invulnerability", "13. Second Life",
-            "Slower Reactions", "Exhausted", " Random Ability Failure", "17. Fragile Body", "18. Delayed Healing",
-            "Reduced Accuracy", "Longer Cooldowns", "21. Blurred Vision", "22. Panic Under Pressure", "23. Cannot Run",
-            "Tunnel Vision", "Glass Cannon", "26. One Life Only", "27. No Perk",
+ "Tougher-Body",
+    "Swift-Movement",
+    "Steady-Stance",
+    "Slower-Reflexes",
+    "Slow-Stamina-Recovery",
+    "Reduced-Cooldown",
+    "Quick-Stamina-Recovery",
+    "Panic-State",
+    "Increased-Cooldown",
+    "High-Energy-Cost",
+    "Fragile-Skin",
+    "Faster-Reflexes",
+    "Better-Awareness",
+    "Agile-Dodge",
+    "Adrenaline-Rush"
+
+
         ];
 
         const environments = [
@@ -145,32 +336,114 @@
         // ==========================================
         
         const iconMappings = {
+// --- God Tier Icons ---
+"JotaroKujo_jojo": "icons/star_platinum.png",
+"DIO_jojo": "icons/the_world.png",
+"Josuke_jojo": "icons/crazy_diamond.png",
+"Giorno_jojo": "icons/gold_experience.png",
+"GoldExperienceRequiem_jojo": "icons/ger.png",
+"Diavolo_jojo": "icons/king_crimson.png",
+"Pucci_jojo": "icons/made_in_heaven.png",
+"JohnnyJoestar_jojo": "icons/tusk_act4.png",
+"WonderOfU_jojo": "icons/wonder_of_u.png",
+"Kars_jojo": "icons/kars.png",
+"D4C_jojo": "icons/d4c.png",
+"TheWorldOverHeaven_jojo": "icons/heaven.png",
 
-      // God Tier Icons (11 total)
-    "Jotaro Kujo (Star Platinum)": "icons/star_platinum.png",
-    "DIO (The World)": "icons/the_world.png",
-    "Josuke (Crazy Diamond)": "icons/crazy_diamond.png",
-    "Giorno (Gold Experience)": "icons/gold_experience.png",
-    "Gold Experience Requiem": "icons/ger.png",
-    "Diavolo (King Crimson)": "icons/king_crimson.png",
-    "Pucci (Made In Heaven)": "icons/made_in_heaven.png",
-    "Johnny (Tusk Act 4)": "icons/tusk_act4.png",
-    "Wonder Of U": "icons/wonder_of_u.png",
-    "Kars": "icons/kars.png",
-    "D4C": "icons/d4c.png",
-    "The World Over Heaven":"icons/heaven.png",
+// --- High Tier Icons ---
+"WeatherReport_jojo": "icons/weather_report.png",
+"KillerQueen_jojo": "icons/killer_queen.png",
+"BitesTheDust_jojo": "icons/bites_the_dust.png",
+"HeavensDoor_jojo": "icons/heavens_door.png",
+"TheHand_jojo": "icons/the_hand.png",
+"Cream_jojo": "icons/cream.png",
+"CMoon_jojo": "icons/c_moon.png",
+"SoftAndWet_jojo": "icons/soft_and_wet.png",
+"SilverChariotRequiem_jojo": "icons/scr.png",
 
-    // High Tier Icons (10 total)
-    "Weather Report": "icons/weather_report.png",
-    "Killer Queen": "icons/killer_queen.png",
-    "Bites The Dust": "icons/bites_the_dust.png",
-    "Heaven's Door": "icons/heavens_door.png",
-    "The Hand": "icons/the_hand.png",
-    "Cream": "icons/cream.png",
-    "C-Moon": "icons/c_moon.png",
-    "Soft & Wet": "icons/soft_and_wet.png",
 
-    "Silver Chariot Requiem": "icons/scr.png"
+
+// JJK
+"Yuji_jjk": "icons/yuji_jjk.png",
+"Gojo_jjk": "icons/gojo_jjk.png",
+"Sukuna_jjk": "icons/sukuna_jjk.png",
+"Megumi_jjk": "icons/megumi_jjk.png",
+"Yuta_jjk": "icons/yuta_jjk.png",
+"Toji_jjk": "icons/toji_jjk.png",
+"Geto_jjk": "icons/geto_jjk.png",
+"Kenjaku_jjk": "icons/kenjaku_jjk.png",
+"Maki_jjk": "icons/maki_jjk.png",
+"Mahito_jjk": "icons/mahito_jjk.png",
+
+// --- Strong Fighters / Fan Favorites ---
+"Todo_jjk": "icons/todo_jjk.png",
+"Nanami_jjk": "icons/nanami_jjk.png",
+"Hakari_jjk": "icons/hakari_jjk.png",
+"Kashimo_jjk": "icons/kashimo_jjk.png",
+"Jogo_jjk": "icons/jogo_jjk.png",
+"Hanami_jjk": "icons/hanami_jjk.png",
+"Choso_jjk": "icons/choso_jjk.png",
+"Naoya_jjk": "icons/naoya_jjk.png",
+"Uraume_jjk": "icons/uraume_jjk.png",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --- BUFFS ---
+    "Faster-Reflexes": "icons/faster_reflexes.png",
+    "Quick-Stamina-Recovery": "icons/quick_stamina_recovery.png",
+    "Swift-Movement": "icons/swift_movement.png",
+    "Tougher-Body": "icons/tougher_body.png",
+    "Reduced-Cooldown": "icons/reduced_cooldown.png",
+    "Agile-Dodge": "icons/agile_dodge.png",
+    "Weakness-Detection": "icons/weakness_detection.png",
+    "Better-Awareness": "icons/better_awareness.png",
+    "Lower-Energy-Cost": "icons/lower_energy_cost.png",
+
+    "Adrenaline-Rush": "icons/Adrenaline.png",
+    "Steady-Stance": "icons/steady_stance.png",
+
+    // --- DEBUFFS ---
+    "Slower-Reflexes": "icons/slower_reflexes.png",
+    "Slow-Stamina-Recovery": "icons/slow_stamina_recovery.png",
+  
+    "Fragile-Skin": "icons/fragile_skin.png",
+    "Increased-Cooldown": "icons/increased_cooldown.png",
+  
+
+    "High-Energy-Cost": "icons/high_energy_cost.png",
+
+
+    "Panic-State": "icons/panic_state.png",
+
+
+
+    // --- NEUTRAL ---
+    "Pure-Skill-No-Perk": "icons/no_perk.png"
         };
 
         // NEW: Map specific characters to custom fonts, colors, and shadows!
