@@ -31,60 +31,34 @@
         // ==========================================
         // 2. AUDIO SYSTEM
         // ==========================================
-        let audioCtx;
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-        }
+// Pointing to the "Sounds" folder
+const clickSound = new Audio('Sounds/click.wav');
+        const hoverSound = new Audio('Sounds/hover.wav');
+        const spinTickSound = new Audio('Sounds/SpinTick.wav'); 
+        spinTickSound.volume = 0.1;
+        const winSound = new Audio('Sounds/win.wav');
 
         function playClick() {
-            initAudio();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.type = 'square'; 
-            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.04); 
-            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.12);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.12);
+            clickSound.currentTime = 0;
+            clickSound.play().catch(e => console.log("Audio blocked", e));
         }
 
+        function playHover() {
+            hoverSound.currentTime = 0;
+            hoverSound.play().catch(e => console.log("Audio blocked", e));
+        }
+
+        // This is what the wheel animation actually uses!
         function playTick() {
-            initAudio();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.03);
+            spinTickSound.currentTime = 0;
+            spinTickSound.play().catch(e => console.log("Audio blocked", e));
         }
 
         function playWin() {
-            initAudio();
-            const notes = [523.25, 659.25, 783.99, 1046.50, 1567.98]; 
-            notes.forEach((freq, i) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.type = 'square'; 
-                const startTime = audioCtx.currentTime + (i * 0.06);
-                osc.frequency.setValueAtTime(freq, startTime);
-                gain.gain.setValueAtTime(0.06, startTime);
-                gain.gain.linearRampToValueAtTime(0, startTime + 0.15);
-                osc.start(startTime);
-                osc.stop(startTime + 0.15);
-            });
+            winSound.currentTime = 0;
+            winSound.play().catch(e => console.log("Audio blocked", e));
         }
+
 
 
         // ==========================================
@@ -176,8 +150,8 @@
         function showModal(type, result) {
             let titleText = "RESULT ACQUIRED";
             if (type === "CHARACTER") titleText = "";
-            if (type === "PERK") titleText = "POWER UP!";
-            if (type === "ENVIRONMENT") titleText = "BATTLEFIELD SET!";
+            if (type === "PERK") titleText = "";
+            if (type === "ENVIRONMENT") titleText = "";
             
             document.getElementById('modalType').innerText = titleText;
             
@@ -349,7 +323,7 @@
         
         setTimeout(() => {
             window.charWheel = new SpinnerWheel('charWheel', characters, 30);
-            window.perkWheel = new SpinnerWheel('perkWheel', currentPerkList, 30);
+            window.perkWheel = new SpinnerWheel('perkWheel', currentPerkList, 15);
             window.envWheel = new SpinnerWheel('envWheel', environments, 30);
         }, 150);
 
